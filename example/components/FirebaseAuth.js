@@ -1,8 +1,7 @@
 /* globals window */
 import React, { useEffect, useState } from 'react'
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth'
-import firebase from 'firebase/app'
-import 'firebase/auth'
+import { EmailAuthProvider, getAuth } from 'firebase/auth'
 
 // Note that next-firebase-auth inits Firebase for us,
 // so we don't need to.
@@ -13,7 +12,7 @@ const firebaseAuthConfig = {
   // https://github.com/firebase/firebaseui-web#configure-oauth-providers
   signInOptions: [
     {
-      provider: firebase.auth.EmailAuthProvider.PROVIDER_ID,
+      provider: EmailAuthProvider.PROVIDER_ID,
       requireDisplayName: false,
     },
   ],
@@ -42,7 +41,7 @@ const FirebaseAuth = () => {
       {renderAuth ? (
         <StyledFirebaseAuth
           uiConfig={firebaseAuthConfig}
-          firebaseAuth={firebase.auth()}
+          firebaseAuth={getAuth()}
         />
       ) : null}
     </div>

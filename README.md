@@ -687,17 +687,14 @@ To use the Firebase admin module, you can use [`getFirebaseAdmin`](#getfirebasea
 To use the Firebase JS SDK, simply import Firebase as you normally would. For example:
 
 ```jsx
-import firebase from 'firebase/app'
-import 'firebase/firestore'
+import { getFirestore, collection } 'firebase/firestore'
 import { useEffect } from 'react'
 
 const Artists = () => {
   const [artists, setArtists] = useState(artists)
 
   useEffect(() => {
-    return firebase
-      .firestore()
-      .collection('artists')
+    return collection(getFirestore(), 'artists')
       .onSnapshot((snap) => {
         if (!snap) {
           return
